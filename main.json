@@ -8,7 +8,7 @@
         }
     },
     "post_flood": {
-        "url": "https://raw.githubusercontent.com/cassbethany10-afk/test123/refs/heads/main/post_flood.js",
+        "url": "https://raw.githubusercontent.com/cassbethany10-afk/test123/refs/heads/main/post_fload.js",
         "params": {
             "url": {"required": true, "type": "string"},
             "requests": {"required": true, "type": "number"},

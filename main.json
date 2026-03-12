@@ -5,8 +5,8 @@
         "params": {
             "target": {"required": true, "type": "string"},
             "requests": {"required": true, "type": "number"},
-            "method": {"required": false, "default": "GET"},
-           "duration": {"required": false, "default": 10}
+            "duration": {"required": false, "default": 10},
+            "method": {"required": false, "default": "GET"}
         }
     }
 }

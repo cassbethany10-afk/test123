@@ -3,7 +3,7 @@
     "http_flood": {
         "url": "https://raw.githubusercontent.com/cassbethany10-afk/test123/refs/heads/main/http_fload.js",
         "params": {
-            "url": {"required": true, "type": "string"},
+            "target": {"required": true, "type": "string"},
             "requests": {"required": true, "type": "number"},
             "method": {"required": false, "default": "GET"}
         }

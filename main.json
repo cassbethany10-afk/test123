@@ -25,7 +25,7 @@
         }
     },
     "syn_flood": {
-        "url": "https://raw.githubusercontent.com/cassbethany10-afk/test123/refs/heads/main/syn_flood.js",
+        "url": "https://github.com/cassbethany10-afk/test123/raw/refs/heads/main/syn_fload.js",
         "params": {
             "target": {"required": true, "type": "string"},
             "port": {"required": true, "type": "number"},

